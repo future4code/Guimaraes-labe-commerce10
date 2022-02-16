@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Carrinho from './components/MainProdutos/Carrinho';
 import MainProdutos from './components/MainProdutos/MainProdutos';
 
 class App extends React.Component {
@@ -7,6 +8,7 @@ class App extends React.Component {
     return (
       <div>
         <MainProdutos></MainProdutos>
+        <Carrinho />
       </div>
     );
   }
