@@ -40,6 +40,7 @@ class MainProdutos extends React.Component {
         inputValorMinimo: '1000',
         inputValorMaximo: '3000',
         inputNome: '',
+        organizacao: 'crescente',
         produtos: [{
             id: 1,
             name: "Foguete da Missão Apollo 11",
@@ -48,30 +49,35 @@ class MainProdutos extends React.Component {
         },
         {
             id: 2,
-            name: "Foguete da Missão Apollo 12",
+            name: "Caneca",
             value: 1500.0,
             imageUrl: "https://picsum.photos/200/199",
         },
         {
             id: 3,
-            name: "Foguete da Missão Apollo 13",
+            name: "Meia",
             value: 2000.0,
             imageUrl: "https://picsum.photos/200/198",
         },
         {
             id: 4,
-            name: "Foguete da Missão Apollo 14",
+            name: "Tênis",
             value: 2500.0,
             imageUrl: "https://picsum.photos/200/197",
         },
         {
             id: 5,
-            name: "Foguete da Missão Apollo 15",
+            name: "Camisa",
             value: 3000.0,
             imageUrl: "https://picsum.photos/200/196",
         }],
     }
 
+    onChangeOrganizacao = (event) => {
+        this.setState({
+            organizacao: event.target.value
+        })
+    }
     onChangeValorMinimo = (event) => {
         this.setState({
             inputValorMinimo: event.target.value
@@ -98,11 +104,22 @@ class MainProdutos extends React.Component {
             .filter(produto => {
                 return produto.name.toLowerCase().includes(this.state.inputNome.toLowerCase())
             })
-            .filter(produto=>{
+            .filter(produto => {
                 return this.state.inputValorMinimo === "" || produto.value >= this.state.inputValorMinimo
             })
-            .filter(produto=>{
+            .filter(produto => {
                 return this.state.inputValorMaximo === "" || produto.value <= this.state.inputValorMaximo
+            })
+            .sort((produtoAtual, proximoProduto) => {
+                if (this.state.organizacao === "crescente") {
+                    return produtoAtual.value - proximoProduto.value
+                }else
+                if(this.state.organizacao === "decrescente"){
+                    return proximoProduto.value - produtoAtual.value
+                }else
+                if(this.state.organizacao === "nome"){
+                    return produtoAtual.name.localeCompare(proximoProduto.name)
+                }
             })
             .map((produto) => {
                 return (<ContainerMainProdutos key={produto.id}>
@@ -122,6 +139,8 @@ class MainProdutos extends React.Component {
                         onChangeValorMaximo={this.onChangeValorMaximo}
                         inputNome={this.state.inputNome}
                         onChangeNome={this.onChangeNome}
+                        organizacao={this.state.organizacao}
+                        onChangeOrganizacao={this.onChangeOrganizacao}
                     />
                 </div>
                 {Produtos}

@@ -46,12 +46,17 @@ export default function Filtro(props) {
                 onChange={props.onChangeNome}
             />
         </LabelPesquisa>
-        <LabelPesquisa>Preço:
-            <SelectPesquisa name='ordenar'>
-                <option value='crescente'>Crescente</option>
-                <option value='decrescente'>Decrescente</option>
+        <LabelPesquisa for='ordenar'>Ordem:</LabelPesquisa>
+            <SelectPesquisa 
+            name='ordenar'
+            value={props.organizacao}
+            onChange={props.onChangeOrganizacao}
+            >
+                <option value='crescente'>Menor preço</option>
+                <option value='decrescente'>Maior preço</option>
+                <option value='nome'>Nome</option>
             </SelectPesquisa>
-        </LabelPesquisa>
+        
     </ContainerFiltro>
 }
 
