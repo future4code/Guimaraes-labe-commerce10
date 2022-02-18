@@ -131,6 +131,7 @@ class MainProdutos extends React.Component {
             })
         return (
             <ContainerMain>
+                    <div>
                     <Filtro
                         inputValorMinimo={this.state.inputValorMinimo}
                         onChangeValorMinimo={this.onChangeValorMinimo}
@@ -141,6 +142,7 @@ class MainProdutos extends React.Component {
                         organizacao={this.state.organizacao}
                         onChangeOrganizacao={this.onChangeOrganizacao}
                     />
+                    </div>
                 {Produtos}
             </ContainerMain>
 
