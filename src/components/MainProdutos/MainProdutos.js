@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+import Filtro from "./Filtro";
+
+const ContainerMain = styled.div`
+    display: flex;
+`
+
 const ContainerMainProdutos = styled.div`
     display: inline-grid;
     border: 1px solid black;
@@ -30,6 +36,9 @@ const PrecoProduto = styled.p`
 
 class MainProdutos extends React.Component {
     state = {
+        inputValorMinimo: '10000',
+        inputValorMaximo: '30000',
+        inputNome: '',
         produtos: [{
             id: 1,
             name: "Foguete da Missão Apollo 11",
@@ -59,9 +68,24 @@ class MainProdutos extends React.Component {
             name: "Foguete da Missão Apollo 15",
             value: 30000.0,
             imageUrl: "https://picsum.photos/200/196",
-        },
-    ],
+        }],
     }
+
+    onChangeValorMinimo = (event) => {
+        this.setState({
+          inputValorMinimo: event.target.value
+        })
+      }
+      onChangeValorMaximo = (event) => {
+        this.setState({
+          inputValorMaximo: event.target.value
+        })
+      }
+      onChangeNome = (event) => {
+        this.setState({
+          inputNome: event.target.value
+        })
+      }
 
     onClickCarrinho = () => {
 
@@ -69,19 +93,33 @@ class MainProdutos extends React.Component {
 
     render() {
 
-        const Produtos = this.state.produtos.map((produto) => {
-            return (<ContainerMainProdutos key={produto.id}>
+        const Produtos = this.state.produtos
+            .filter(produto => {
+                return produto.name.toLowerCase().includes(this.state.inputNome.toLowerCase())
+            })
+            .map((produto) => {
+                return (<ContainerMainProdutos key={produto.id}>
                     <ImagemProduto src={produto.imageUrl} alt={produto.name}></ImagemProduto>
                     <p>{produto.name}</p>
                     <PrecoProduto>R$: {produto.value}</PrecoProduto>
                     <BotaoProduto onClick={this.onClickCarrinho}>Adicionar ao carrinho</BotaoProduto>
                 </ContainerMainProdutos>)
-        })
+            })
         return (
-            <div>
+            <ContainerMain>
+                <div>
+                    <Filtro
+                        inputValorMinimo={this.state.inputValorMinimo}
+                        onChangeValorMinimo={this.onChangeValorMinimo}
+                        inputValorMaximo={this.state.inputValorMaximo}
+                        onChangeValorMaximo={this.onChangeValorMaximo}
+                        inputNome={this.state.inputNome}
+                        onChangeNome={this.onChangeNome}
+                    />
+                </div>
                 {Produtos}
-            </div>
-            
+            </ContainerMain>
+
         );
     }
 }
