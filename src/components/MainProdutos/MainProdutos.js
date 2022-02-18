@@ -5,6 +5,7 @@ import Filtro from "./Filtro";
 
 const ContainerMain = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `
 
 const ContainerMainProdutos = styled.div`
@@ -36,56 +37,56 @@ const PrecoProduto = styled.p`
 
 class MainProdutos extends React.Component {
     state = {
-        inputValorMinimo: '10000',
-        inputValorMaximo: '30000',
+        inputValorMinimo: '1000',
+        inputValorMaximo: '3000',
         inputNome: '',
         produtos: [{
             id: 1,
             name: "Foguete da Missão Apollo 11",
-            value: 10000.0,
+            value: 1000.0,
             imageUrl: "https://picsum.photos/200/200",
         },
         {
             id: 2,
             name: "Foguete da Missão Apollo 12",
-            value: 15000.0,
+            value: 1500.0,
             imageUrl: "https://picsum.photos/200/199",
         },
         {
             id: 3,
             name: "Foguete da Missão Apollo 13",
-            value: 20000.0,
+            value: 2000.0,
             imageUrl: "https://picsum.photos/200/198",
         },
         {
             id: 4,
             name: "Foguete da Missão Apollo 14",
-            value: 25000.0,
+            value: 2500.0,
             imageUrl: "https://picsum.photos/200/197",
         },
         {
             id: 5,
             name: "Foguete da Missão Apollo 15",
-            value: 30000.0,
+            value: 3000.0,
             imageUrl: "https://picsum.photos/200/196",
         }],
     }
 
     onChangeValorMinimo = (event) => {
         this.setState({
-          inputValorMinimo: event.target.value
+            inputValorMinimo: event.target.value
         })
-      }
-      onChangeValorMaximo = (event) => {
+    }
+    onChangeValorMaximo = (event) => {
         this.setState({
-          inputValorMaximo: event.target.value
+            inputValorMaximo: event.target.value
         })
-      }
-      onChangeNome = (event) => {
+    }
+    onChangeNome = (event) => {
         this.setState({
-          inputNome: event.target.value
+            inputNome: event.target.value
         })
-      }
+    }
 
     onClickCarrinho = () => {
 
@@ -96,6 +97,12 @@ class MainProdutos extends React.Component {
         const Produtos = this.state.produtos
             .filter(produto => {
                 return produto.name.toLowerCase().includes(this.state.inputNome.toLowerCase())
+            })
+            .filter(produto=>{
+                return this.state.inputValorMinimo === "" || produto.value >= this.state.inputValorMinimo
+            })
+            .filter(produto=>{
+                return this.state.inputValorMaximo === "" || produto.value <= this.state.inputValorMaximo
             })
             .map((produto) => {
                 return (<ContainerMainProdutos key={produto.id}>

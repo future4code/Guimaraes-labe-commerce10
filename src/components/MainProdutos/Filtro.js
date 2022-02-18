@@ -46,7 +46,7 @@ export default function Filtro(props) {
                 onChange={props.onChangeNome}
             />
         </LabelPesquisa>
-        <LabelPesquisa for='ordenar'>Preço:
+        <LabelPesquisa>Preço:
             <SelectPesquisa name='ordenar'>
                 <option value='crescente'>Crescente</option>
                 <option value='decrescente'>Decrescente</option>
