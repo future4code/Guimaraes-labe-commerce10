@@ -94,8 +94,8 @@ class MainProdutos extends React.Component {
         })
     }
 
-    onClickCarrinho = () => {
-
+    onClickCarrinho = (idProd,nomeProd,valorProd,imagemUrl) => {
+        this.props.adicionarAoCarrinho(idProd,nomeProd,valorProd,imagemUrl)
     }
 
     render() {
@@ -126,7 +126,7 @@ class MainProdutos extends React.Component {
                     <ImagemProduto src={produto.imageUrl} alt={produto.name}></ImagemProduto>
                     <p>{produto.name}</p>
                     <PrecoProduto>R$: {produto.value}</PrecoProduto>
-                    <BotaoProduto onClick={this.onClickCarrinho}>Adicionar ao carrinho</BotaoProduto>
+                    <BotaoProduto onClick={()=>this.onClickCarrinho(produto.id,produto.name,produto.value,produto.imageUrl)}>Adicionar ao carrinho</BotaoProduto>
                 </ContainerMainProdutos>)
             })
         return (
