@@ -4,14 +4,12 @@ import mais from "../../img/mais.png"
 import menos from "../../img/menos.png"
 
 const Container=styled.div`
-    position: absolute;
-    top:0px;
-    right: 0px;
+    
     padding: 15px;
     background-color: #e5f3ba;
     max-width: 500px;
-    min-height: 300px;
-    min-width: 300px;
+    min-height: 400px;
+    min-width: 600px;
     h3{
         text-align: end;
     }
@@ -55,6 +53,9 @@ const Produto=styled.div`
     border: 1px solid green;
     justify-content: space-around;
     align-items: center;
+    img{
+        max-height: 50px;
+    }
     img:hover{
         
         background-color: #5bb4e7;
@@ -78,17 +79,17 @@ const IconeMenos=styled.img`
 `
 export default class Carrinho extends React.Component{
     state={
-        produtos:[{id:1,nome:"Produto 1",valor: 999.99,imagem:"https://picsum.photos/50/50",quantidade:1},{id:2,nome:"Produto 2",valor: 499.99,imagem:"https://picsum.photos/50/50",quantidade:1},{id:3,nome:"Produto 3",valor: 299.99,imagem:"https://picsum.photos/50/50",quantidade:1}]
+        produtosNoCarrinho: this.props.novoCarrinho
     }
     getValorTotal=()=>{
         let valorTotal=0
-        for(let produto of this.state.produtos){
+        for(let produto of this.state.produtosNoCarrinho){
             valorTotal+= produto.valor* produto.quantidade
         }
         return valorTotal.toFixed(2)
     }
    aumentarQuantidade=(id)=>{
-       const arrayCarrinho=this.state.produtos.map((produto)=>{
+       const arrayCarrinho=this.state.produtosNoCarrinho.map((produto)=>{
 
         if(produto.id===id){
             const product={...produto, quantidade: produto.quantidade+1}
@@ -97,11 +98,11 @@ export default class Carrinho extends React.Component{
         return produto
 
        })
-       this.setState({produtos: arrayCarrinho})
-     
+       this.setState({produtosNoCarrinho: arrayCarrinho})
+       this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
    }
    diminuirQuantidade=(id)=>{
-       const arrayCarrinho=this.state.produtos.map((produto)=>{
+       const arrayCarrinho=this.state.produtosNoCarrinho.map((produto)=>{
 
         if(produto.id===id){
            if(produto.quantidade>0){
@@ -113,18 +114,37 @@ export default class Carrinho extends React.Component{
 
        }).filter((produto) => produto.quantidade > 0)
   
-       this.setState({produtos: arrayCarrinho})
-     
-   }
-   
+       this.setState({produtosNoCarrinho: arrayCarrinho})
+       this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
+    }
+    adicionarNoCarrinho=()=>{
+        let newProduto=this.props.novoCarrinho
+        
+        
+        
+        this.setState({produtos: newProduto})
+        console.log("produtosCar"+this.state.produtosNoCarrinho)
+        this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
     
+   }
+  componentDidUpdate(prevProps,prevState){
+   if(prevState.produtosNoCarrinho !== this.state.produtosNoCarrinho){
+    this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
+      console.log(this.state.produtosNoCarrinho)
+      console.log(this.props.novoCarrinho)
+      
+   }
+ }
     render(){
+       
         return(
             <Container>
                 <h2>Carrinho</h2>
-                {this.state.produtos.map((produto)=>{
+               
+                { 
+                this.state.produtosNoCarrinho.map((produto)=>{
                     return <Produto  key={produto.id}>
-                        <img src={produto.imagem}  />
+                        <img src={produto.imagem}/>
                         <span >{produto.nome}</span>
                         <span ><IconeMenos src={menos}  onClick={()=>this.diminuirQuantidade(produto.id)} /> {produto.quantidade}   <IconeMais src={mais}  onClick={()=>this.aumentarQuantidade(produto.id)}/></span>
                         <span  >R$: {(produto.valor)}</span>
