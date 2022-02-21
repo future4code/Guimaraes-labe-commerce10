@@ -1,24 +1,19 @@
 # Projeto LabECommerce
 
 ### Experimente: 
-<a href="https://nonchalant-offer.surge.sh/"> LabECommerce </a>
+<a href="http://valuable-tomatoes.surge.sh"> LabECommerce </a>
+
 
 ### Desenvolvedores: 
 - Leonardo Santos
 - Caio Sala Rigotto
 
 
-## Versão Desktop
+## Preview
 <h1 align="center">
-  Em Construção
+  <img src="../../GitHub%20Grupo/Guimaraes-labe-commerce10/src/img/preview.png">
 </h1>
 
-
-## Versão Mobile
-
-<h1 align="center">
-  Em construção
-</h1>
 
 ### Features
 

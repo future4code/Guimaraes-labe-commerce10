@@ -3,13 +3,13 @@ import styled from "styled-components"
 import mais from "../../img/mais.png"
 import menos from "../../img/menos.png"
 
-const Container=styled.div`
+const Container = styled.div`
     
     padding: 15px;
     background-color: #e5f3ba;
-    max-width: 500px;
-    min-height: 400px;
-    min-width: 600px;
+    max-width: 30vw;
+    min-height: 5vh;
+    min-width: 25vw;
     h3{
         text-align: end;
     }
@@ -23,7 +23,7 @@ const Container=styled.div`
         border-bottom: 2px solid black;
     }
 `
-const ContainerFooterCarrinho=styled.div`
+const ContainerFooterCarrinho = styled.div`
     border-top: 2px solid black;
     padding: 20px;
     display: flex;
@@ -46,7 +46,7 @@ const ContainerFooterCarrinho=styled.div`
 
     }
 `
-const Produto=styled.div`
+const Produto = styled.div`
     display: flex;
     margin: 10px;
     padding: 10px;
@@ -61,7 +61,7 @@ const Produto=styled.div`
         background-color: #5bb4e7;
     }
 `
-const IconeMais=styled.img`
+const IconeMais = styled.img`
     width: 30px;
     margin: 0 10px;
     cursor: pointer;
@@ -69,7 +69,7 @@ const IconeMais=styled.img`
     background-color: #50eb50;
    
 `
-const IconeMenos=styled.img`
+const IconeMenos = styled.img`
     width: 30px;
     margin: 0 10px;
     cursor: pointer;
@@ -77,84 +77,83 @@ const IconeMenos=styled.img`
     background-color: #d34c4c;
    
 `
-export default class Carrinho extends React.Component{
-    state={
+export default class Carrinho extends React.Component {
+    state = {
         produtosNoCarrinho: this.props.novoCarrinho
     }
-    getValorTotal=()=>{
-        let valorTotal=0
-        for(let produto of this.state.produtosNoCarrinho){
-            valorTotal+= produto.valor* produto.quantidade
+    getValorTotal = () => {
+        let valorTotal = 0
+        for (let produto of this.state.produtosNoCarrinho) {
+            valorTotal += produto.valor * produto.quantidade
         }
         return valorTotal.toFixed(2)
     }
-   aumentarQuantidade=(id)=>{
-       const arrayCarrinho=this.state.produtosNoCarrinho.map((produto)=>{
+    aumentarQuantidade = (id) => {
+        const arrayCarrinho = this.state.produtosNoCarrinho.map((produto) => {
 
-        if(produto.id===id){
-            const product={...produto, quantidade: produto.quantidade+1}
-            return product
-        }
-        return produto
+            if (produto.id === id) {
+                const product = { ...produto, quantidade: produto.quantidade + 1 }
+                return product
+            }
+            return produto
 
-       })
-       this.setState({produtosNoCarrinho: arrayCarrinho})
-       this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
-   }
-   diminuirQuantidade=(id)=>{
-       const arrayCarrinho=this.state.produtosNoCarrinho.map((produto)=>{
-
-        if(produto.id===id){
-           if(produto.quantidade>0){
-            const product={...produto, quantidade: produto.quantidade-1}
-            return product
-           }
-        }
-        return produto
-
-       }).filter((produto) => produto.quantidade > 0)
-  
-       this.setState({produtosNoCarrinho: arrayCarrinho})
-       this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
-    }
-    adicionarNoCarrinho=()=>{
-        let newProduto=this.props.novoCarrinho
-        
-        
-        
-        this.setState({produtos: newProduto})
-        console.log("produtosCar"+this.state.produtosNoCarrinho)
+        })
+        this.setState({ produtosNoCarrinho: arrayCarrinho })
         this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
-    
-   }
-  componentDidUpdate(prevProps,prevState){
-   if(prevState.produtosNoCarrinho !== this.state.produtosNoCarrinho){
-    this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
-      console.log(this.state.produtosNoCarrinho)
-      console.log(this.props.novoCarrinho)
-      
-   }
- }
-    render(){
-       
-        return(
+    }
+    diminuirQuantidade = (id) => {
+        const arrayCarrinho = this.state.produtosNoCarrinho.map((produto) => {
+
+            if (produto.id === id) {
+                if (produto.quantidade > 0) {
+                    const product = { ...produto, quantidade: produto.quantidade - 1 }
+                    return product
+                }
+            }
+            return produto
+
+        }).filter((produto) => produto.quantidade > 0)
+
+        this.setState({ produtosNoCarrinho: arrayCarrinho })
+        this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
+    }
+    adicionarNoCarrinho = () => {
+        let newProduto = this.props.novoCarrinho
+
+
+
+        this.setState({ produtos: newProduto })
+        console.log("produtosCar" + this.state.produtosNoCarrinho)
+        this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
+
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.produtosNoCarrinho !== this.state.produtosNoCarrinho) {
+            this.props.atualizarCarrinho(this.state.produtosNoCarrinho)
+            console.log(this.state.produtosNoCarrinho)
+            console.log(this.props.novoCarrinho)
+        }
+    }
+    render() {
+
+        return (
             <Container>
                 <h2>Carrinho</h2>
-               
-                { 
-                this.state.produtosNoCarrinho.map((produto)=>{
-                    return <Produto  key={produto.id}>
-                        <img src={produto.imagem}/>
-                        <span >{produto.nome}</span>
-                        <span ><IconeMenos src={menos}  onClick={()=>this.diminuirQuantidade(produto.id)} /> {produto.quantidade}   <IconeMais src={mais}  onClick={()=>this.aumentarQuantidade(produto.id)}/></span>
-                        <span  >R$: {(produto.valor)}</span>
-                    </Produto>
-                })}
+
+                {
+                    this.state.produtosNoCarrinho.map((produto) => {
+                        return <Produto key={produto.id}>
+                            <img src={produto.imagem} />
+                            <span >{produto.nome}</span>
+                            <span ><IconeMenos src={menos} onClick={() => this.diminuirQuantidade(produto.id)} /> {produto.quantidade}   <IconeMais src={mais} onClick={() => this.aumentarQuantidade(produto.id)} /></span>
+                            <span  >R$: {(produto.valor)}</span>
+                        </Produto>
+                    })}
                 <ContainerFooterCarrinho>
-                <>
-                <h3> Total : R$ <span> {this.getValorTotal()}</span></h3>
-                </> 
-                <button>Finalizar  compra</button>                   
+                    <>
+                        <h3> Total : R$ <span> {this.getValorTotal()}</span></h3>
+                    </>
+                    <button>Finalizar  compra</button>
                 </ContainerFooterCarrinho>
             </Container>
         )
