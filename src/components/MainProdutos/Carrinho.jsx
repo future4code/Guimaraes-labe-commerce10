@@ -62,7 +62,7 @@ const Produto = styled.div`
     }
 `
 const IconeMais = styled.img`
-    width: 30px;
+    width: 26px;
     margin: 0 10px;
     cursor: pointer;
     border-radius: 50%;
@@ -70,7 +70,7 @@ const IconeMais = styled.img`
    
 `
 const IconeMenos = styled.img`
-    width: 30px;
+    width:  26px;
     margin: 0 10px;
     cursor: pointer;
     border-radius: 50%;
