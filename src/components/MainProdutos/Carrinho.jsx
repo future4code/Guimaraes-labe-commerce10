@@ -134,6 +134,9 @@ export default class Carrinho extends React.Component {
             console.log(this.props.novoCarrinho)
         }
     }
+    comprar=()=>{
+        alert("Compra concluída !")
+    }
     render() {
 
         return (
@@ -153,7 +156,7 @@ export default class Carrinho extends React.Component {
                     <>
                         <h3> Total : R$ <span> {this.getValorTotal()}</span></h3>
                     </>
-                    <button>Finalizar  compra</button>
+                    <button onClick={this.comprar}>Finalizar  compra</button>
                 </ContainerFooterCarrinho>
             </Container>
         )
