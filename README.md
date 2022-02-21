@@ -1,7 +1,7 @@
 # Projeto LabECommerce
 
 ### Experimente: 
-<a href="http://next-underwear.surge.sh"> LabECommerce </a>
+<a href="https://nonchalant-offer.surge.sh/"> LabECommerce </a>
 
 ### Desenvolvedores: 
 - Leonardo Santos
