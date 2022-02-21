@@ -1,7 +1,7 @@
 # Projeto LabECommerce
 
 ### Experimente: 
-<a href="http://next-underwear.surge.sh"> LabECommerce </a>
+<a href="http://valuable-tomatoes.surge.sh"> LabECommerce </a>
 
 ### Desenvolvedores: 
 - Leonardo Santos
@@ -10,7 +10,7 @@
 
 ## Preview
 <h1 align="center">
-  Em Construção
+  <img src="../../GitHub%20Grupo/Guimaraes-labe-commerce10/src/img/preview.png">
 </h1>
 
 
