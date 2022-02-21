@@ -7,9 +7,9 @@ const Container = styled.div`
     
     padding: 15px;
     background-color: #e5f3ba;
-    max-width: 30vw;
+    max-width: 35vw;
     min-height: 5vh;
-    min-width: 25vw;
+    min-width: 27vw;
     h3{
         text-align: end;
     }
@@ -62,7 +62,7 @@ const Produto = styled.div`
     }
 `
 const IconeMais = styled.img`
-    width: 30px;
+    width: 26px;
     margin: 0 10px;
     cursor: pointer;
     border-radius: 50%;
@@ -70,7 +70,7 @@ const IconeMais = styled.img`
    
 `
 const IconeMenos = styled.img`
-    width: 30px;
+    width:  26px;
     margin: 0 10px;
     cursor: pointer;
     border-radius: 50%;
@@ -134,6 +134,9 @@ export default class Carrinho extends React.Component {
             console.log(this.props.novoCarrinho)
         }
     }
+    comprar=()=>{
+        alert("Compra concluída !")
+    }
     render() {
 
         return (
@@ -153,7 +156,7 @@ export default class Carrinho extends React.Component {
                     <>
                         <h3> Total : R$ <span> {this.getValorTotal()}</span></h3>
                     </>
-                    <button>Finalizar  compra</button>
+                    <button onClick={this.comprar}>Finalizar  compra</button>
                 </ContainerFooterCarrinho>
             </Container>
         )

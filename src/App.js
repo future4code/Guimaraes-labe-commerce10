@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Carrinho from './components/MainProdutos/Carrinho';
 import MainProdutos from './components/MainProdutos/MainProdutos';
 import Header from './components/MainProdutos/Header';
+import Footer from './components/MainProdutos/Footer';
 
 const MainContainer = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ class App extends React.Component {
         <Carrinho atualizarCarrinho={this.atualizarCarrinho} novoCarrinho={this.state.carrinho}/>
         </div>
       </MainContainer>
+      <Footer/>
       </div>
     );
   }
