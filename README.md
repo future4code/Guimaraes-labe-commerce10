@@ -1,7 +1,7 @@
 # Projeto LabECommerce
 
 ### Experimente: 
-<a href="http://valuable-tomatoes.surge.sh"> LabECommerce </a>
+<a href="https://equal-dad.surge.sh/"> LabECommerce </a>
 
 
 ### Desenvolvedores: 
