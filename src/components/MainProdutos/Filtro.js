@@ -8,6 +8,7 @@ const ContainerFiltro = styled.div`
     padding: 10px;
     border: 1px solid black;
     width: 15vw;
+    border-top: transparent;
 `
 const InputPesquisa = styled.input`
     margin: 20px;

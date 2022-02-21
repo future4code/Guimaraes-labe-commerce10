@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import Carrinho from './components/MainProdutos/Carrinho';
 import MainProdutos from './components/MainProdutos/MainProdutos';
+import Header from './components/MainProdutos/Header';
 
 const MainContainer = styled.div`
-  
+  display: flex;
 `
 
 class App extends React.Component {
@@ -20,19 +21,21 @@ class App extends React.Component {
     
     this.setState({carrinho :carrinhos})
     console.log(carrinhos)
-    
-    
-    
   }
  atualizarCarrinho=(produtos)=>{
   this.setState({carrinho: produtos})
  }
   render() {
     return (
+      <div>
+        <Header />
       <MainContainer>
         <MainProdutos adicionarAoCarrinho={this.adicionarAoCarrinho}/>
+        <div>
         <Carrinho atualizarCarrinho={this.atualizarCarrinho} novoCarrinho={this.state.carrinho}/>
+        </div>
       </MainContainer>
+      </div>
     );
   }
 }

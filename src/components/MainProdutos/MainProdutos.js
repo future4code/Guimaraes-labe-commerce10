@@ -3,6 +3,12 @@ import styled from "styled-components";
 
 import Filtro from "./Filtro";
 
+import CamisaSanta from "../../img/camisa-santa.jpeg"
+import CamisaClean from "../../img/camisa-clean.jpg"
+import CamisaCapacete from "../../img/camisa-capacete.jpg"
+import CamisaUni from "../../img/camisa-uni.jpeg"
+import CamisaBalao from "../../img/camisa-balao.jpeg"
+
 const ContainerMain = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -10,12 +16,15 @@ const ContainerMain = styled.div`
 
 const ContainerMainProdutos = styled.div`
     display: inline-grid;
-    border: 1px solid black;
+    border: 1px solid gray;
     margin: 15px;
-    width: 20vw;
+    width: 15vw;
+    border-radius: 10px 10px;
 `
 const ImagemProduto = styled.img`
     width: 100%;
+    border-radius: 10px;
+    
 `
 const BotaoProduto = styled.button`
     width: 50%;
@@ -30,46 +39,46 @@ const BotaoProduto = styled.button`
 `
 
 const PrecoProduto = styled.p`
-    border-top: 1px solid black;
+    border-top: 1px solid gray;
     font-weight: bold;
     font-size: large;
 `
 
 class MainProdutos extends React.Component {
     state = {
-        inputValorMinimo: '1000',
-        inputValorMaximo: '3000',
+        inputValorMinimo: '0',
+        inputValorMaximo: '100',
         inputNome: '',
         organizacao: 'crescente',
         produtos: [{
             id: 1,
-            name: "Foguete da Missão Apollo 11",
-            value: 1000.0,
-            imageUrl: "https://picsum.photos/200/200",
+            name: "Camiseta Santa Astronaut",
+            value: 93.0,
+            imageUrl: CamisaSanta,
         },
         {
             id: 2,
-            name: "Caneca",
-            value: 1500.0,
-            imageUrl: "https://picsum.photos/200/199",
+            name: "Camiseta Clean Stars",
+            value: 46.0,
+            imageUrl: CamisaClean,
         },
         {
             id: 3,
-            name: "Meia",
-            value: 2000.0,
-            imageUrl: "https://picsum.photos/200/198",
+            name: "Camiseta Astronaut",
+            value: 85.0,
+            imageUrl: CamisaCapacete,
         },
         {
             id: 4,
-            name: "Tênis",
-            value: 2500.0,
-            imageUrl: "https://picsum.photos/200/197",
+            name: "Camiseta Unicórnio Espacial",
+            value: 76.0,
+            imageUrl: CamisaUni,
         },
         {
             id: 5,
-            name: "Camisa",
-            value: 3000.0,
-            imageUrl: "https://picsum.photos/200/196",
+            name: "Camiseta Balloons",
+            value: 92.0,
+            imageUrl: CamisaBalao,
         }],
     }
 
@@ -94,8 +103,8 @@ class MainProdutos extends React.Component {
         })
     }
 
-    onClickCarrinho = (idProd,nomeProd,valorProd,imagemUrl) => {
-        this.props.adicionarAoCarrinho(idProd,nomeProd,valorProd,imagemUrl)
+    onClickCarrinho = (idProd, nomeProd, valorProd, imagemUrl) => {
+        this.props.adicionarAoCarrinho(idProd, nomeProd, valorProd, imagemUrl)
     }
 
     render() {
@@ -113,25 +122,25 @@ class MainProdutos extends React.Component {
             .sort((produtoAtual, proximoProduto) => {
                 if (this.state.organizacao === "crescente") {
                     return produtoAtual.value - proximoProduto.value
-                }else
-                if(this.state.organizacao === "decrescente"){
-                    return proximoProduto.value - produtoAtual.value
-                }else
-                if(this.state.organizacao === "nome"){
-                    return produtoAtual.name.localeCompare(proximoProduto.name)
-                }
+                } else
+                    if (this.state.organizacao === "decrescente") {
+                        return proximoProduto.value - produtoAtual.value
+                    } else
+                        if (this.state.organizacao === "nome") {
+                            return produtoAtual.name.localeCompare(proximoProduto.name)
+                        }
             })
             .map((produto) => {
                 return (<ContainerMainProdutos key={produto.id}>
                     <ImagemProduto src={produto.imageUrl} alt={produto.name}></ImagemProduto>
                     <p>{produto.name}</p>
                     <PrecoProduto>R$: {produto.value}</PrecoProduto>
-                    <BotaoProduto onClick={()=>this.onClickCarrinho(produto.id,produto.name,produto.value,produto.imageUrl)}>Adicionar ao carrinho</BotaoProduto>
+                    <BotaoProduto onClick={() => this.onClickCarrinho(produto.id, produto.name, produto.value, produto.imageUrl)}>Adicionar ao carrinho</BotaoProduto>
                 </ContainerMainProdutos>)
             })
         return (
             <ContainerMain>
-                    <div>
+                <div>
                     <Filtro
                         inputValorMinimo={this.state.inputValorMinimo}
                         onChangeValorMinimo={this.onChangeValorMinimo}
@@ -142,7 +151,7 @@ class MainProdutos extends React.Component {
                         organizacao={this.state.organizacao}
                         onChangeOrganizacao={this.onChangeOrganizacao}
                     />
-                    </div>
+                </div>
                 {Produtos}
             </ContainerMain>
 

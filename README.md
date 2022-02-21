@@ -8,17 +8,11 @@
 - Caio Sala Rigotto
 
 
-## Versão Desktop
+## Preview
 <h1 align="center">
   Em Construção
 </h1>
 
-
-## Versão Mobile
-
-<h1 align="center">
-  Em construção
-</h1>
 
 ### Features
 
