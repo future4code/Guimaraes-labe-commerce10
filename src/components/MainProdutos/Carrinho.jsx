@@ -7,9 +7,9 @@ const Container = styled.div`
     
     padding: 15px;
     background-color: #e5f3ba;
-    max-width: 30vw;
+    max-width: 35vw;
     min-height: 5vh;
-    min-width: 25vw;
+    min-width: 27vw;
     h3{
         text-align: end;
     }
