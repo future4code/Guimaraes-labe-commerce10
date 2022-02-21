@@ -8,13 +8,6 @@
 - Leonardo Santos
 - Caio Sala Rigotto
 
-
-## Preview
-<h1 align="center">
-  <img src="../../GitHub%20Grupo/Guimaraes-labe-commerce10/src/img/preview.png"/>
-</h1>
-
-
 ### Features
 
 - [x] Filtro de produtos por preço/nome
